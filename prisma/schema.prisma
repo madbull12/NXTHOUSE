@@ -1,11 +1,11 @@
 datasource db {
-    provider          = "postgresql"
-    url               = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
     // shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/d/migrate-shadow
 }
 
 generator client {
-    provider        = "prisma-client-js"
+    provider = "prisma-client-js"
     // previewFeatures = ["referentialActions"] // You won't need this in Prisma 3.X or higher.
 }
 
@@ -44,6 +44,9 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    password      String?
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @updatedAt
 }
 
 model VerificationToken {
