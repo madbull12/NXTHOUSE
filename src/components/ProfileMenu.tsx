@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { AlignJustify } from "lucide-react";
+import Link from "next/link";
 
 const ProfileMenu = () => {
   return (
@@ -29,8 +30,16 @@ const ProfileMenu = () => {
       <DropdownMenuContent className="min-w-[200px]" align="end">
         {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator /> */}
-        <DropdownMenuItem className=" cursor-pointer">Sign up</DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">Log in</DropdownMenuItem>
+        <DropdownMenuItem className=" cursor-pointer">
+          <Link href="/register">
+            Sign up
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
+        <Link href="/login">
+            Sign in 
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
