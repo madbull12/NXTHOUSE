@@ -7,6 +7,7 @@ import { compare } from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
+
   providers: [
     CredentialsProvider({
       name: "Sign in",

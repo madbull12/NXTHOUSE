@@ -30,15 +30,11 @@ const ProfileMenu = () => {
       <DropdownMenuContent className="min-w-[200px]" align="end">
         {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator /> */}
-        <DropdownMenuItem className=" cursor-pointer">
-          <Link href="/register">
-            Sign up
-          </Link>
-        </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
-        <Link href="/login">
-            Sign in 
-          </Link>
+          <Link href="/auth/login">Login</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className=" cursor-pointer">
+          <Link href="/auth/register">Register</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
