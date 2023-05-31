@@ -8,9 +8,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { AlignJustify } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
 
 const ProfileMenu = () => {
+  const { data: session, status } = useSession();
+  console.log(session);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -21,21 +25,35 @@ const ProfileMenu = () => {
               className="rounded-full"
               height={40}
               width={40}
-              src="https://github.com/shadcn.png"
+              src={
+                status === "unauthenticated"
+                  ? "https://github.com/shadcn.png"
+                  : session?.user.image!
+              }
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>
+              <Skeleton className="w-[40px] h-[40px] rounded-full" />
+            </AvatarFallback>
           </Avatar>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-[200px]" align="end">
         {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator /> */}
-        <DropdownMenuItem className="cursor-pointer">
-          <Link href="/auth/login">Login</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem className=" cursor-pointer">
-          <Link href="/auth/register">Register</Link>
-        </DropdownMenuItem>
+        {status === "unauthenticated" ? (
+          <>
+            <DropdownMenuItem className="cursor-pointer">
+              <Link href="/auth/login">Login</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className=" cursor-pointer">
+              <Link href="/auth/register">Register</Link>
+            </DropdownMenuItem>
+          </>
+        ) : (
+          <DropdownMenuItem className="cursor-pointer" onClick={()=>signOut()}>
+            Logout
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -36,7 +36,7 @@ const LoginForm = () => {
       const res = await signIn("credentials", {
         ...formData,
         callbackUrl,
-        redirect: false,
+        redirect: true,
       });
 
       if (!res?.ok) {

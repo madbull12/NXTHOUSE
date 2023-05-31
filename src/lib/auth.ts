@@ -34,6 +34,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!user) return null;
+
         const isPasswordValid = await compare(
           credentials.password,
           user.password!
@@ -43,11 +44,7 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        return {
-          id: user.id + "",
-          email: user.email,
-          name: user.name,
-        };
+        return user;
       },
     }),
     GoogleProvider({
