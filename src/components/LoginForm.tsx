@@ -9,7 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { loginSchema } from "@/lib/validations/auth";
+import { loginSchemaValidator } from "@/lib/validations/auth";
 import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,7 +29,7 @@ const LoginForm = () => {
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [loginError, setLoginError] = useState("");
 
-  const onSubmit = async (formData: z.infer<typeof loginSchema>) => {
+  const onSubmit = async (formData: z.infer<typeof loginSchemaValidator>) => {
     console.log(formData);
     try {
       setIsLoading(true);
@@ -50,8 +50,8 @@ const LoginForm = () => {
       setIsLoading(false);
     }
   };
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<z.infer<typeof loginSchemaValidator>>({
+    resolver: zodResolver(loginSchemaValidator),
   });
   return (
     <div className="border p-4 min-w-[500px] mx-auto rounded-lg">
