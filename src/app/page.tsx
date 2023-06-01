@@ -1,16 +1,14 @@
-import Image from "next/image";
-import { categories } from "@/data";
-import CategorySection from "@/components/CategorySection";
-import { getServerSession } from "next-auth";
-import { db } from "@/lib/db";
-import { authOptions } from "@/lib/auth";
+import HouseList from "@/components/HouseList";
+import TotalPriceBtn from "@/components/TotalPriceBtn";
+
+
 export default async function Home() {
-  const session =await getServerSession(authOptions);
   
 
   return (
-    <main className="min-h-screen">
-
+    <main className="min-h-screen max-w-7xl mx-auto">
+      <TotalPriceBtn />
+      <HouseList />
     </main>
   );
 }

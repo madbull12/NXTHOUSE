@@ -1,4 +1,7 @@
 interface HouseProps {
-    image:string;
-    user:User
+    images:string[];
+    country:string;
+    city:string;
+    price:number;
+    rating:number;
 }

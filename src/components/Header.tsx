@@ -17,12 +17,10 @@ const Header = () => {
   if (pathname !== "/") return null;
 
   return (
-    <div className="flex flex-col sticky top-0 right-0">
+    <div className="flex flex-col sticky bg-white top-0  z-50 right-0">
       <header className="  p-4 border-b">
         <div className="max-w-7xl mx-auto flex  justify-between items-center">
-          <Link href="/">
-            <Logo />
-          </Link>
+          <Logo />
           <BookingButton />
           <div className="flex items-center gap-x-2 ">
             <button className="hover:bg-secondary rounded-full px-4 py-2 text-sm">

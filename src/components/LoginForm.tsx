@@ -21,6 +21,7 @@ import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import { AxiosError } from "axios";
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -36,16 +37,25 @@ const LoginForm = () => {
       const res = await signIn("credentials", {
         ...formData,
         callbackUrl,
-        redirect: true,
+        redirect: false,
       });
 
       if (!res?.ok) {
         router.push(callbackUrl);
       } else {
-        setLoginError( "Invalid email or password");
+        setLoginError("Invalid email or password");
       }
     } catch (error) {
-      console.log(error);
+      if (error instanceof z.ZodError) {
+        setLoginError(error.message);
+        return;
+      }
+
+      if (error instanceof AxiosError) {
+        setLoginError(error.message);
+
+        return;
+      }
     } finally {
       setIsLoading(false);
     }
@@ -69,7 +79,11 @@ const LoginForm = () => {
               <FormItem>
                 <FormLabel>Email*</FormLabel>
                 <FormControl>
-                  <Input placeholder="test@example.com" {...field} className="focus:border-accent" />
+                  <Input
+                    placeholder="test@example.com"
+                    {...field}
+                    className="focus:border-accent"
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -95,10 +109,18 @@ const LoginForm = () => {
               </FormItem>
             )}
           />
-          <Button isLoading={isLoading} className="w-full bg-accent hover:bg-accent hover:brightness-110 transition-all ease-out">
+          <Button
+            isLoading={isLoading}
+            className="w-full bg-accent hover:bg-accent hover:brightness-110 transition-all ease-out"
+          >
             Login
           </Button>
-          <p className="text-sm">Don't have an account yet? <Link href="/auth/register" className="text-accent-foreground">Register here.</Link></p>
+          <div className="text-sm">
+            Don't have an account yet?{" "}
+            <Link href="/auth/register" className="text-accent-foreground">
+              Register here.
+            </Link>
+          </div>
           <p className="text-sm font-medium text-destructive">{loginError}</p>
         </form>
       </Form>
