@@ -14,10 +14,10 @@ import { Skeleton } from "./ui/skeleton";
 
 const ProfileMenu = () => {
   const { data: session, status } = useSession();
-  console.log(session);
+  console.log(session?.user.image);
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <DropdownMenu >
+      <DropdownMenuTrigger asChild >
         <div className="flex rounded-full p-2 border items-center gap-x-2 hover:shadow-lg cursor-pointer transition-all duration-150 ease-in-out">
           <AlignJustify size={15} />
           <Avatar>
@@ -37,7 +37,7 @@ const ProfileMenu = () => {
           </Avatar>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-[200px]" align="end">
+      <DropdownMenuContent className="min-w-[200px] z-[9999]" align="end">
         {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator /> */}
         {status === "unauthenticated" ? (
@@ -48,10 +48,11 @@ const ProfileMenu = () => {
             <DropdownMenuItem className=" cursor-pointer">
               <Link href="/auth/register">Register</Link>
             </DropdownMenuItem>
+            
           </>
         ) : (
           <DropdownMenuItem className="cursor-pointer" onClick={()=>signOut()}>
-            Logout
+           Logout
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>

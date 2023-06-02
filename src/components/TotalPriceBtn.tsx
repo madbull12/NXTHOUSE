@@ -26,7 +26,7 @@ const TotalPriceBtn = () => {
   return (
     <div className='mt-4 border rounded-lg gap-x-2  max-w-2xl flex items-center  mx-auto px-4 py-6 bg-transparent'>
         <p className='font-semibold text-sm'>Tampilkan harga total</p>
-        <Separator orientation='vertical'  />
+        <Separator className='bg-black' orientation='vertical'  />
         <p className='text-gray-500 text-sm'>Termasuk semua biaya,sebelum pajak</p>
         <SwitchTotalPriceBtn />
     </div>

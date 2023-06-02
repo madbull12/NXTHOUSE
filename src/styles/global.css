@@ -79,4 +79,46 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  .swiper-pagination {
+    bottom: 0;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: transparent;
+    border: 1px solid rgb(201, 201, 201);
+    opacity: 1;
+  }
+  
+  .swiper-pagination-bullet-active {
+    width: 20px;
+    height: 6px;
+    transition: width 0.5s;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid transparent;
+  }
+}
+
+.swiper-pagination {
+  bottom: 0;
+}
+
+.swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: white !important;
+  opacity:0.5 !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 20px;
+  height: 6px;
+  transition: width 0.5s;
+  border-radius: 5px;
+  background: white !important;
+  border: 1px solid transparent;
+  opacity: 1 !important;
 }

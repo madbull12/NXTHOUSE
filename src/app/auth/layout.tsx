@@ -1,6 +1,8 @@
 import Logo from "@/components/Logo";
 import React from "react";
 
+
+
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <header className="p-4">
