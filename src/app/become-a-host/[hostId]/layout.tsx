@@ -5,8 +5,9 @@ import { getCurrentUser } from "@/lib/session";
 import { User } from "@prisma/client";
 import React from "react";
 
-const Layout = async({ children }: { children: React.ReactNode }) => {
+const Layout = async({ children }: { children: React.ReactNode, }) => {
   const session = await getCurrentUser();
+
 
   return (
     <div>

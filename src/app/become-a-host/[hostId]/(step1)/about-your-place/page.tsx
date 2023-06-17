@@ -1,11 +1,18 @@
+"use client"
+
 import Container from "@/components/Container";
 import Image from "next/image";
 import React from "react";
-
+import {motion} from 'framer-motion'
 const AboutYourPlacePage = () => {
   return (
     <Container>
-      <div className="flex min-h-[90vh]  gap-x-4 md:items-center py-16 flex-col md:flex-row">
+      <motion.div
+        initial={{ opacity:0 }}
+        animate={{ opacity:1 }}
+        exit={{opacity:0}}
+        className="flex min-h-[90vh]  gap-x-4 md:items-center py-16 flex-col md:flex-row"
+      >
         <div className="flex flex-col gap-y-4 w-full md:w-1/2">
           <p>Step 1</p>
           <h1 className=" text-3xl md:text-5xl font-[500] leading-[1.12] ">
@@ -28,7 +35,7 @@ const AboutYourPlacePage = () => {
             className="w-full h-full"
           />
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

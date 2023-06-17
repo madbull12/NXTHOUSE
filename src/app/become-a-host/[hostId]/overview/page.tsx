@@ -1,4 +1,7 @@
+"use client"
+
 import Container from "@/components/Container";
+import HostFooter from "@/components/HostFooter";
 import OverviewStep from "@/components/OverviewStep";
 import { Metadata } from "next";
 import React from "react";
@@ -44,6 +47,7 @@ const OverviewPage = () => {
         </div>
  
       </div>
+      
     </Container>
   );
 };

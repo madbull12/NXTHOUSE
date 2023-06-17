@@ -1,3 +1,5 @@
+"use client"
+
 import HouseList from "@/components/HouseList";
 import TotalPriceBtn from "@/components/TotalPriceBtn";
 
