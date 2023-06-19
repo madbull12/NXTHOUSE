@@ -19,11 +19,13 @@ const HostFooter: React.FC<Props> = ({ session }) => {
 
   const listNextPaths: Record<string, string> = {
     "overview": "about-your-place",
-    "about-your-place": "structure"
+    "about-your-place": "structure",
+    "structure":"privacy-type"
   };
   const listBackPaths: Record<string, string> = {
     "about-your-place": "overview",
-    "structure":"about-your-place"
+    "structure":"about-your-place",
+    "privacy-type":"structure"
   };
 
   const nextLink = `/become-a-host/${session?.id}/${

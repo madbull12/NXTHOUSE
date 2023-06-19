@@ -1,16 +1,32 @@
-"use client"
+"use client";
 
 import Container from "@/components/Container";
 import Image from "next/image";
 import React from "react";
-import {motion} from 'framer-motion'
+import { motion, AnimatePresence } from "framer-motion";
 const AboutYourPlacePage = () => {
+  const variants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+    exit: {
+      opacity: 0,
+    },
+  };
   return (
     <Container>
       <motion.div
-        initial={{ opacity:0 }}
-        animate={{ opacity:1 }}
-        exit={{opacity:0}}
+        variants={variants}
+        initial="hidden"
+        transition={{
+          ease: "easeInOut",
+          duration: 0.7,
+        }}
+        animate="visible"
+        exit="exit"
         className="flex min-h-[90vh]  gap-x-4 md:items-center py-16 flex-col md:flex-row"
       >
         <div className="flex flex-col gap-y-4 w-full md:w-1/2">
