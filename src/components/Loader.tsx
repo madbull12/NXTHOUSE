@@ -3,7 +3,7 @@ import { BiLoader } from "react-icons/bi";
 
 const Loader = () => {
   return (
-    <div className="flex min-h-[90vh]  gap-x-4 w-full py-16 flex-col  justify-center ">
+    <div className="flex min-h-screen   w-full items-center    justify-center ">
       <BiLoader className="text-4xl animate-spin" />
     </div>
   );
