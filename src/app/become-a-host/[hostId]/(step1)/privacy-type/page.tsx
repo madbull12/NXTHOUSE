@@ -90,7 +90,7 @@ const PrivacyTypePage = () => {
                   type.title === housing.privacyType
                     ? "ring-2 ring-black "
                     : "ring-1 ring-gray-300"
-                } p-6 flex transition-all ease-in-out duration-75  items-center hover:ring-black cursor-pointer hover:ring-2  justify-between rounded-xl`}
+                } p-6 flex transition-all ease-in-out duration-75 items-center hover:ring-border cursor-pointer hover:ring-2  justify-between rounded-xl`}
               >
                 <div>
                   <h1 className="font-[500] text-lg">{type.title}</h1>
