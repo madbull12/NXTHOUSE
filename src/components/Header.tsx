@@ -12,6 +12,7 @@ import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import ProfileDropdown from "./ProfileMenu";
 import ProfileMenu from "./ProfileMenu";
 import { useSession } from "next-auth/react";
+import { ModeToggle } from "./ModeToggle";
 
 const Header = () => {
   const { data:session } = useSession();
@@ -20,8 +21,8 @@ const Header = () => {
 
 
   return (
-    <div className="flex flex-col sticky bg-white top-0  z-[100] right-0">
-      <header className="  p-4 border-b">
+    <div className="flex flex-col sticky top-0  z-[100] right-0">
+      <header className="bg-background p-4 border-b">
         <div className="max-w-7xl mx-auto flex  justify-between items-center">
           <Logo />
           <BookingButton />
@@ -32,6 +33,7 @@ const Header = () => {
             <button className="hover:bg-secondary rounded-full h-10 w-10 grid place-items-center">
               <Globe size={20} />
             </button>
+            <ModeToggle />
 
             <ProfileMenu />
           </div>

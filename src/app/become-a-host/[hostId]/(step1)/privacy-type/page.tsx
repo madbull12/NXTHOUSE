@@ -47,7 +47,7 @@ const PrivacyTypePage = () => {
       y: 0, // bring it back to nrmal
       opacity: 1,
       transition: {
-        duration: 0.4,
+        duration: .3,
       },
     },
   };

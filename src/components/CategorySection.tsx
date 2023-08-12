@@ -8,7 +8,7 @@ import { v4 } from "uuid";
 const CategorySection = () => {
   const [_category, setCategory] = useState("Rooms");
   return (
-    <section className="p-4 bg-white">
+    <section className="p-4 bg-background">
       <div className="max-w-7xl flex   mx-auto  shadow-sm items-center gap-x-6">
         {categories.map((category) => (
           <div

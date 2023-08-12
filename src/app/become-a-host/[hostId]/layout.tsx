@@ -14,7 +14,7 @@ const Layout = async({ children }: { children: React.ReactNode, }) => {
 
   return (
     <div>
-      <header className="fixed z-50 bg-white border-b  top-0 max-w-7xl mx-auto p-4 right-0 left-0 w-full flex items-center  justify-between">
+      <header className="fixed z-50 bg-background border-b  top-0 max-w-7xl mx-auto p-4 right-0 left-0 w-full flex items-center  justify-between">
         <Logo />
         <button className="text-sm px-4 py-2 rounded-full font-[500] hover:border-black transition-colors ease-in-out border">
           Save & exit

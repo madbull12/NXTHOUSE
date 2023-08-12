@@ -6,8 +6,9 @@ import { Poppins } from "next/font/google";
 import Providers from "@/components/Providers";
 import { Toaster } from "react-hot-toast";
 import React from "react";
-import { AnimatePresence } from 'framer-motion'
-
+import { AnimatePresence } from "framer-motion";
+import NextTopLoader from "nextjs-toploader";
+import { ThemeProvider } from "next-themes";
 const poppins = Poppins({
   weight: ["500", "400", "100", "700"],
   subsets: ["latin"],
@@ -24,20 +25,21 @@ interface RootProps {
 
 export default function RootLayout({ children }: RootProps) {
   return (
-    <html lang="en">
-      <AnimatePresence mode="wait"  onExitComplete={() => window.scrollTo(0, 0)}>
-      <body className={poppins.className}>
-        <Providers>
-          <Toaster position="top-center" reverseOrder={false} />
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+        <body className={poppins.className}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <NextTopLoader color="#FC834A" showSpinner={false} />
+            <Providers>
+              <Toaster position="top-center" reverseOrder={false} />
 
-          <Header />
-          {children}
-        </Providers>
-
-        
-      </body>
+              <Header />
+              {children}
+            </Providers>
+          </ThemeProvider>
+        </body>
       </AnimatePresence>
-      
     </html>
   );
 }

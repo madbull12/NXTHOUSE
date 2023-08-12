@@ -60,13 +60,13 @@ const HouseCard = ({ house }: { house: HouseProps }) => {
           } transition-all ease-in-out absolute top-1/2 z-50 -translate-y-1/2 flex w-full text-xl  justify-between  `}
         >
           <button
-            className="bg-white rounded-full w-8 grid place-items-center h-8 ml-4 shadow-sm"
+            className="bg-background rounded-full w-8 grid place-items-center h-8 ml-4 shadow-sm"
             onClick={() => swiperRef.current?.slidePrev()}
           >
             <BiChevronLeft />
           </button>
           <button
-            className="bg-white rounded-full w-8 grid place-items-center h-8 mr-4 shadow-sm"
+            className="bg-background rounded-full w-8 grid place-items-center h-8 mr-4 shadow-sm"
             onClick={() => swiperRef.current?.slideNext()}
           >
             <BiChevronRight />
