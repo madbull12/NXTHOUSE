@@ -5,3 +5,30 @@ interface HouseProps {
     price:number;
     rating:number;
 }
+
+
+export interface Feature {
+    bbox:       number[];
+    center:     number[];
+    context:    Properties[];
+    geometry:   Geometry;
+    id:         string;
+    place_name: string;
+    place_type: string[];
+    properties: Properties;
+    relevance:  number;
+    text:       string;
+    type:       string;
+}
+
+export interface Properties {
+    id?:        string;
+    mapbox_id:  string;
+    wikidata:   string;
+    short_code: string;
+}
+
+export interface Geometry {
+    type:        string;
+    coordinates: number[];
+}

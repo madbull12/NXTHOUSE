@@ -41,7 +41,7 @@ const HostFooter: React.FC<Props> = ({ session }) => {
 
   return (
     <>
-      <footer className="fixed bg-background  bottom-0 max-w-7xl mx-auto p-4 right-0 left-0 w-full flex flex-col gap-y-4">
+      <footer className="fixed bg-background z-[999] bottom-0 max-w-7xl mx-auto p-4 right-0 left-0 w-full flex flex-col gap-y-4">
         {!isOverviewPage ? (
           <div className="flex  items-center gap-x-1 ">
             <div className="h-2 bg-gray-200 flex-[0.33]"></div>
