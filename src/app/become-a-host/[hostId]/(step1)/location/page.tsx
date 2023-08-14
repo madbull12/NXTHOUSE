@@ -11,9 +11,12 @@ import { Feature } from "@/types/types";
 // import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
+
 // import Geocoder from "react-map-gl-geocoder";
-import "leaflet/dist/leaflet.css"
+import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
+import GeoSearch from "@/components/GeoSearch";
 const LocationPage = () => {
   const [locations, setLocations] = useState<Array<Feature>>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -50,9 +53,9 @@ const LocationPage = () => {
   };
 
   const customIcon = new Icon({
-    iconUrl:"/assets/marker.svg",
-    iconSize:[30,30]
-  })
+    iconUrl: "/assets/marker.svg",
+    iconSize: [30, 30],
+  });
 
   return (
     <Container>
@@ -100,21 +103,23 @@ const LocationPage = () => {
             ></ReactMapGL>
           </>
         )} */}
-       
+
         <MapContainer
           center={[51.505, -0.09]}
           zoom={13}
-          scrollWheelZoom={false}
+          scrollWheelZoom={true}
         >
+          <GeoSearch />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[51.505, -0.09]} icon={customIcon}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+            <Marker position={[51.505, -0.09]} icon={customIcon}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+      
         </MapContainer>
       </div>
     </Container>
