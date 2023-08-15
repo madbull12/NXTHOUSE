@@ -100,6 +100,8 @@
     background: white;
     border: 1px solid transparent;
   }
+
+  
 }
 
 .swiper-pagination {
@@ -207,12 +209,12 @@
   border-radius: 0 4px 4px 0;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-left: none;
-  background-color: #000;
   background-clip: padding-box;
   z-index: -1;
   height: auto;
   margin: 0;
   padding: 0 8px;
+  @apply bg-background 
 }
 
 .leaflet-control-geosearch.active form {
@@ -230,10 +232,12 @@
   height: 30px;
   border-radius: 0 4px 4px 0;
   text-indent: 8px;
+
+  @apply bg-input
 }
 
 .leaflet-control-geosearch .results {
-  background: #000;
+ @apply bg-background
 }
 
 .leaflet-control-geosearch .results > * {
@@ -253,8 +257,7 @@
 
 .leaflet-control-geosearch .results > .active,
 .leaflet-control-geosearch .results > :hover {
-  background-color: #616161;
-  border-color: #c6c6c6;
+  @apply bg-foreground/10;
   cursor: pointer;
 }
 

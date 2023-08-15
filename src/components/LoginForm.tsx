@@ -134,7 +134,7 @@ const LoginForm = () => {
           type="button"
           onClick={() => signIn("google")}
           variant={"outline"}
-          className="flex items-center gap-x-2 hover:text-white"
+          className="flex items-center gap-x-2 "
         >
           <FcGoogle />
           <span>Sign in with Google</span>

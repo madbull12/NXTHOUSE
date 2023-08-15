@@ -17,45 +17,31 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import GeoSearch from "@/components/GeoSearch";
+import customIcon from "@/lib/customMarker";
 const LocationPage = () => {
   const [locations, setLocations] = useState<Array<Feature>>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   // const map = useMap();
-  // const [viewport, setViewport] = useState<ViewState>({
-  //   latitude: 3.5951956,
-  //   longitude: 98.6722227,
-  //   zoom: 10,
-  //   bearing: 0,
-  //   pitch: 0,
-  //   padding: {
-  //     top: 0,
-  //     bottom: 0,
-  //     left: 0,
-  //     right: 0,
-  //   },
-  // });
+  const [coords, setCoords] = useState<{ lat: number; long: number }>();
 
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(function (position) {
-  //     setViewport({
-  //       ...viewport,
-  //       latitude: position.coords.latitude,
-  //       longitude: position.coords.longitude,
-  //     });
-  //     console.log(viewport);
-  //   });
-  // }, []);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setCoords({
+        ...coords,
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      });
+      console.log(position, coords);
+    },null,{
+      enableHighAccuracy:true
+    });
+  }, []);
 
   const searchLocations = async () => {
     const data = await getLocations(searchTerm);
     setLocations(data.features);
     console.log(locations);
   };
-
-  const customIcon = new Icon({
-    iconUrl: "/assets/marker.svg",
-    iconSize: [30, 30],
-  });
 
   return (
     <Container>
@@ -104,23 +90,24 @@ const LocationPage = () => {
           </>
         )} */}
 
-        <MapContainer
-          center={[51.505, -0.09]}
-          zoom={13}
-          scrollWheelZoom={true}
-        >
-          <GeoSearch />
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-            <Marker position={[51.505, -0.09]} icon={customIcon}>
+        {coords ? (
+          <MapContainer
+            center={[coords?.lat as number, coords?.long as number]}
+            zoom={13}
+            scrollWheelZoom={true}
+          >
+            <GeoSearch />
+            <TileLayer
+              // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker draggable={true} position={[coords?.lat as number, coords?.long as number]} icon={customIcon}>
               <Popup>
                 A pretty CSS3 popup. <br /> Easily customizable.
               </Popup>
             </Marker>
-      
-        </MapContainer>
+          </MapContainer>
+        ) : null}
       </div>
     </Container>
   );
