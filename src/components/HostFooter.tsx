@@ -6,13 +6,15 @@ import Link from "next/link";
 
 import { User } from "@prisma/client";
 import { usePathname } from "next/navigation";
+import Container from "./Container";
 
 interface Props {
   to: string;
   session: User;
   back?: string;
+  disableNext:boolean;
 }
-const HostFooter: React.FC<Props> = ({ session }) => {
+const HostFooter: React.FC<Props> = ({ session,disableNext }) => {
   const pathname = usePathname();
   const splittedPath = pathname.split("/");
   console.log(splittedPath);
@@ -40,7 +42,7 @@ const HostFooter: React.FC<Props> = ({ session }) => {
   const isOverviewPage = pathname.includes("/overview");
 
   return (
-    <>
+    <Container>
       <footer className="fixed bg-background z-[999] bottom-0 max-w-7xl mx-auto p-4 right-0 left-0 w-full flex flex-col gap-y-4">
         {!isOverviewPage ? (
           <div className="flex  items-center gap-x-1 ">
@@ -70,7 +72,7 @@ const HostFooter: React.FC<Props> = ({ session }) => {
           </div>
         )}
       </footer>
-    </>
+    </Container>
   );
 };
 

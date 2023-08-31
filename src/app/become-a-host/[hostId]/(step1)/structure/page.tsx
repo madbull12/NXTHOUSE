@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/Container";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AiFillHome } from "react-icons/ai";
 import {
   MdApartment,
@@ -22,6 +22,7 @@ import { RiCaravanFill } from "react-icons/ri";
 import { FaHotel } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useHousingStore } from "@/lib/zustand";
+import useOutsideClick from "@/hooks/use-outside-click";
 type HomeStructure = {
   icon: React.ReactElement;
   name: string;
@@ -112,8 +113,14 @@ const StructurePage = () => {
       },
     },
   };
-
   const { housing, setStructure} = useHousingStore();
+
+  const structureRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(structureRef,()=>{
+    setStructure("")
+  })
+
   console.log(housing)
   return (
     <Container>
@@ -149,10 +156,11 @@ const StructurePage = () => {
                   scale:0.9
                 }}
                 key={i}
+                ref={structureRef}
                 onClick={()=>setStructure(structure.name)}
-                className={`flex flex-col gap-y-2 p-4 group rounded-lg border transition-all ease-out duration-100 cursor-pointer hover:ring-2 ring-black ${structure.name === housing.structure ? "ring-2" : ''}`}
+                className={`flex flex-col gap-y-2 p-4 group rounded-lg border transition-all ease-out duration-100 cursor-pointer hover:ring-2 ring-ring ${structure.name === housing.structure ? "ring-2" : ''}`}
               >
-                <span className="text-3xl group-">{structure.icon}</span>
+                <span className="text-3xl ">{structure.icon}</span>
                 <p className="font-[500]">{structure.name}</p>
               </motion.div>
             ))}

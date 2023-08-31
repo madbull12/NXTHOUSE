@@ -33,7 +33,9 @@ export const authOptions: NextAuthOptions = {
           },
         });
 
-        if (!user) return null;
+        if (!user)  {
+          throw new Error("No user found in this email!")
+        };
 
         const isPasswordValid = await compare(
           credentials.password,
@@ -41,7 +43,7 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!isPasswordValid) {
-          return null;
+          throw new Error("Invalid password!")
         }
 
         return user;

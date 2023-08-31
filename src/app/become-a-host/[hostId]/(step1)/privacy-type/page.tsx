@@ -1,10 +1,12 @@
 "use client";
 import Container from "@/components/Container";
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { BsFillHouseDoorFill, BsDoorOpenFill } from "react-icons/bs";
 import { FaPeopleArrows } from "react-icons/fa";
 import { useHousingStore } from "@/lib/zustand";
+import { cn } from "@/lib/utils";
+import useOutsideClick from "@/hooks/use-outside-click";
 
 const PrivacyTypePage = () => {
   const placeTypes = [
@@ -53,6 +55,11 @@ const PrivacyTypePage = () => {
   };
   const { setPrivacyType, housing } = useHousingStore();
   console.log(housing);
+  const privacyTypeRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(privacyTypeRef,()=>{
+    setPrivacyType("")
+  })
 
   return (
     <Container>
@@ -86,11 +93,8 @@ const PrivacyTypePage = () => {
                 onClick={() => setPrivacyType(type.title)}
                 key={i}
                 variants={listVariant}
-                className={` ${
-                  type.title === housing.privacyType
-                    ? "ring-2 ring-black "
-                    : "ring-1 ring-gray-300"
-                } p-6 flex transition-all ease-in-out duration-75 items-center hover:ring-border cursor-pointer hover:ring-2  justify-between rounded-xl`}
+                ref={privacyTypeRef}
+                className={cn(`p-6 flex transition-all ease-in-out duration-75 items-center border hover:ring-ring cursor-pointer hover:ring-2  justify-between rounded-xl`, type.title === housing.privacyType && "ring-ring ring-2")}
               >
                 <div>
                   <h1 className="font-[500] text-lg">{type.title}</h1>
