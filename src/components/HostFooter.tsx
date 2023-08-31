@@ -9,13 +9,11 @@ import { usePathname } from "next/navigation";
 import Container from "./Container";
 
 interface Props {
-  to: string;
-  session: User;
-  back?: string;
   disableNext:boolean;
 }
-const HostFooter: React.FC<Props> = ({ session,disableNext }) => {
+const HostFooter: React.FC<Props> = ({ disableNext }) => {
   const pathname = usePathname();
+  console.log(pathname)
   const splittedPath = pathname.split("/");
   console.log(splittedPath);
 
@@ -32,10 +30,10 @@ const HostFooter: React.FC<Props> = ({ session,disableNext }) => {
     "location":"privacy-type"
   };
 
-  const nextLink = `/become-a-host/${session?.id}/${
+  const nextLink = `/${splittedPath[1]}/${splittedPath[2]}/${
     listNextPaths[splittedPath[3]]
   }`;
-  const backLink = `/become-a-host/${session?.id}/${
+  const backLink = `/${splittedPath[1]}/${splittedPath[2]}/${
     listBackPaths[splittedPath[3]]
   }`;
 
@@ -64,7 +62,7 @@ const HostFooter: React.FC<Props> = ({ session,disableNext }) => {
               Back
             </Link>
 
-            <Button className="bg-foreground px-8">
+            <Button disabled={disableNext} className="bg-foreground px-8">
               <Link href={nextLink} className="w-full">
                 Next
               </Link>

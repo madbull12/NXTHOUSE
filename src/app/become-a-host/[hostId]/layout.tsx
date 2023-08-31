@@ -22,7 +22,6 @@ const Layout = async({ children }: { children: React.ReactNode, }) => {
       </header>
 
       {children}
-        <HostFooter to="/about-your-place" session={session as User} />
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { FaPeopleArrows } from "react-icons/fa";
 import { useHousingStore } from "@/lib/zustand";
 import { cn } from "@/lib/utils";
 import useOutsideClick from "@/hooks/use-outside-click";
+import HostFooter from "@/components/HostFooter";
 
 const PrivacyTypePage = () => {
   const placeTypes = [
@@ -57,9 +58,9 @@ const PrivacyTypePage = () => {
   console.log(housing);
   const privacyTypeRef = useRef<HTMLDivElement>(null);
 
-  useOutsideClick(privacyTypeRef,()=>{
-    setPrivacyType("")
-  })
+  // useOutsideClick(privacyTypeRef,()=>{
+  //   setPrivacyType("")
+  // })
 
   return (
     <Container>
@@ -106,6 +107,8 @@ const PrivacyTypePage = () => {
           })}
         </motion.div>
       </div>
+      <HostFooter disableNext={housing.privacyType === ""} />
+
     </Container>
   );
 };

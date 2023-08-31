@@ -23,6 +23,7 @@ import { FaHotel } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useHousingStore } from "@/lib/zustand";
 import useOutsideClick from "@/hooks/use-outside-click";
+import HostFooter from "@/components/HostFooter";
 type HomeStructure = {
   icon: React.ReactElement;
   name: string;
@@ -117,9 +118,7 @@ const StructurePage = () => {
 
   const structureRef = useRef<HTMLDivElement>(null);
 
-  useOutsideClick(structureRef,()=>{
-    setStructure("")
-  })
+
 
   console.log(housing)
   return (
@@ -167,6 +166,8 @@ const StructurePage = () => {
           </motion.div>
         ) : null}
       </div>
+      <HostFooter disableNext={housing.structure === ""} />
+
     </Container>
   );
 };

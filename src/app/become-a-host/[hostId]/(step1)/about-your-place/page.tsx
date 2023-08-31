@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Image from "next/image";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import HostFooter from "@/components/HostFooter";
 const AboutYourPlacePage = () => {
   const variants = {
     hidden: {
@@ -52,6 +53,8 @@ const AboutYourPlacePage = () => {
           />
         </div>
       </motion.div>
+      <HostFooter disableNext={false} />
+
     </Container>
   );
 };
