@@ -47,6 +47,7 @@ const OverviewPage = () => {
         </div>
  
       </div>
+      <HostFooter disableNext={true}  />
       
     </Container>
   );

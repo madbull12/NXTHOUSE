@@ -47,6 +47,7 @@ model User {
     password      String?
     createdAt     DateTime  @default(now())
     updatedAt     DateTime  @updatedAt
+    housing       Housing[]
 }
 
 model VerificationToken {
@@ -55,4 +56,14 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Housing {
+    id          String @id @default(cuid())
+    structure   String
+    privacyType String
+    user        User   @relation(fields: [userId], references: [id])
+    userId      String
+    location     Json
+
 }

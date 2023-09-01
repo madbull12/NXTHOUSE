@@ -10,7 +10,7 @@ import getLocations from "@/helper/getLocations";
 import { Feature } from "@/types/types";
 // import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer,  Marker, Popup, useMapEvents } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
 // import Geocoder from "react-map-gl-geocoder";
@@ -18,30 +18,41 @@ import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import GeoSearch from "@/components/GeoSearch";
 import customIcon from "@/lib/customMarker";
-const LocationPage = () => {
-  const [locations, setLocations] = useState<Array<Feature>>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  // const map = useMap();
-  const [coords, setCoords] = useState<{ lat: number; long: number }>();
+import HostFooter from "@/components/HostFooter";
+import { useHousingStore } from "@/lib/zustand";
 
+
+const LocationMarker =() => {
+  const map = useMapEvents({
+    click:()=>{
+      map.locate()
+    },
+    locationfound: (location) => {
+      console.log('location found:', location)
+    },
+  })
+  return null
+}
+
+
+const LocationPage = () => {
+  // const map = useMap();
+  const { housing:{ location }, setLocation} = useHousingStore();
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
-      setCoords({
-        ...coords,
-        lat: position.coords.latitude,
-        long: position.coords.longitude,
-      });
-      console.log(position, coords);
+      setLocation(position?.coords.latitude,position?.coords.longitude);
     },null,{
       enableHighAccuracy:true
     });
   }, []);
 
-  const searchLocations = async () => {
-    const data = await getLocations(searchTerm);
-    setLocations(data.features);
-    console.log(locations);
-  };
+  // useEffect(()=>{
+  //   setLocation(
+
+  //   )
+  // },[coords])
+
+
 
   return (
     <Container>
@@ -90,25 +101,26 @@ const LocationPage = () => {
           </>
         )} */}
 
-        {coords ? (
+        {location ? (
           <MapContainer
-            center={[coords?.lat as number, coords?.long as number]}
+            center={[location?.lat as number, location?.long as number]}
             zoom={13}
             scrollWheelZoom={true}
           >
+            <LocationMarker />
             <GeoSearch />
             <TileLayer
               // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker draggable={true} position={[coords?.lat as number, coords?.long as number]} icon={customIcon}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
+            <Marker draggable={true} position={[location?.lat as number, location?.long as number]} icon={customIcon}>
+          
             </Marker>
           </MapContainer>
         ) : null}
       </div>
+      <HostFooter disableNext={location === null} />
+
     </Container>
   );
 };
