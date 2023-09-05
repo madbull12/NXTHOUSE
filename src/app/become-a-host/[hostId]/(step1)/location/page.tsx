@@ -10,7 +10,13 @@ import getLocations from "@/helper/getLocations";
 import { Feature } from "@/types/types";
 // import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MapContainer, TileLayer,  Marker, Popup, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
 // import Geocoder from "react-map-gl-geocoder";
@@ -20,31 +26,42 @@ import GeoSearch from "@/components/GeoSearch";
 import customIcon from "@/lib/customMarker";
 import HostFooter from "@/components/HostFooter";
 import { useHousingStore } from "@/lib/zustand";
+import { Button } from "@/components/ui/button";
 
-
-const LocationMarker =() => {
+const LocationMarker = () => {
+  const {
+    housing: { location },
+    setLocation,
+  } = useHousingStore();
   const map = useMapEvents({
-    click:()=>{
-      map.locate()
-    },
-    locationfound: (location) => {
-      console.log('location found:', location)
-    },
-  })
-  return null
-}
-
+    click: (e) => {
+      map.locate();
+      setLocation(e.latlng.lat,e.latlng.lng)
+ 
+    }
+  });
+  
+  return null;
+};
 
 const LocationPage = () => {
   // const map = useMap();
-  const { housing:{ location }, setLocation} = useHousingStore();
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setLocation(position?.coords.latitude,position?.coords.longitude);
-    },null,{
-      enableHighAccuracy:true
-    });
-  }, []);
+  const {
+    housing: { location },
+    setLocation,
+  } = useHousingStore();
+  console.log(location)
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(
+  //     function (position) {
+  //       setLocation(position?.coords.latitude, position?.coords.longitude);
+  //     },
+  //     null,
+  //     {
+  //       enableHighAccuracy: true,
+  //     }
+  //   );
+  // }, []);
 
   // useEffect(()=>{
   //   setLocation(
@@ -52,7 +69,17 @@ const LocationPage = () => {
   //   )
   // },[coords])
 
-
+  const handleChooseCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        setLocation(position?.coords.latitude, position?.coords.longitude);
+      },
+      null,
+      {
+        enableHighAccuracy: true,
+      }
+    );
+  };
 
   return (
     <Container>
@@ -113,14 +140,19 @@ const LocationPage = () => {
               // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker draggable={true} position={[location?.lat as number, location?.long as number]} icon={customIcon}>
-          
-            </Marker>
+            <Marker
+              draggable={true}
+              position={[location?.lat as number, location?.long as number]}
+              icon={customIcon}
+            ></Marker>
           </MapContainer>
-        ) : null}
+        ) : (
+          <Button onClick={handleChooseCurrentLocation}>
+            Use your current location
+          </Button>
+        )}
       </div>
       <HostFooter disableNext={location === null} />
-
     </Container>
   );
 };
