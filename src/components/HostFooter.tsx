@@ -21,13 +21,17 @@ const HostFooter: React.FC<Props> = ({ disableNext }) => {
     "overview": "about-your-place",
     "about-your-place": "structure",
     "structure":"privacy-type",
-    "privacy-type":"location"
+    "privacy-type":"location",
+    "location":"floor-plan",
+    "floor-plan":"stand-out"
   };
   const listBackPaths: Record<string, string> = {
     "about-your-place": "overview",
     "structure":"about-your-place",
     "privacy-type":"structure",
-    "location":"privacy-type"
+    "location":"privacy-type",
+    "floor-plan":"location",
+    "stand-out":"floor-plan"
   };
 
   const nextLink = `/${splittedPath[1]}/${splittedPath[2]}/${

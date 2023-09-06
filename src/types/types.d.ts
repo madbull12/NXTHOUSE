@@ -5,7 +5,12 @@ interface HouseProps {
     price:number;
     rating:number;
 }
-
+export interface FloorPlan {
+    guests:number;
+    bedrooms:number;
+    beds:number;
+    bathrooms:number;
+  }
 
 export interface Feature {
     bbox:       number[];
