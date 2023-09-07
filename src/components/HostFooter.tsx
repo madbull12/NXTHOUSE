@@ -23,7 +23,8 @@ const HostFooter: React.FC<Props> = ({ disableNext }) => {
     "structure":"privacy-type",
     "privacy-type":"location",
     "location":"floor-plan",
-    "floor-plan":"stand-out"
+    "floor-plan":"stand-out",
+    "stand-out":"amenities"
   };
   const listBackPaths: Record<string, string> = {
     "about-your-place": "overview",
@@ -31,7 +32,8 @@ const HostFooter: React.FC<Props> = ({ disableNext }) => {
     "privacy-type":"structure",
     "location":"privacy-type",
     "floor-plan":"location",
-    "stand-out":"floor-plan"
+    "stand-out":"floor-plan",
+    "amenities":"stand-out"
   };
 
   const nextLink = `/${splittedPath[1]}/${splittedPath[2]}/${

@@ -11,6 +11,7 @@ interface HousingState {
     long:number | null;
   },
   floorPlan:FloorPlan;
+  amenities:string[];
 }
 
 interface HousingStoreState {
@@ -19,6 +20,8 @@ interface HousingStoreState {
   setPrivacyType:(value:string)=>void;
   setLocation:(latitude:number,longitude:number)=>void;
   setFloorPlan:(floorPlan:FloorPlan)=>void;
+  addAmenities:(value:string)=>void;
+  deleteAmenity:(value:string)=>void;
 }
 
 export const useHousingStore = create<HousingStoreState>((set) => ({
@@ -31,19 +34,20 @@ export const useHousingStore = create<HousingStoreState>((set) => ({
       bedrooms:1,
       beds:1,
       bathrooms:1,
-    }
+    },
+    amenities:[]
   },
-  setStructure: (value: string) => {
+  setStructure: (value) => {
     set((state) => ({
       housing: { ...state.housing, structure: value },
     }));
   },
-  setPrivacyType: (value: string) => {
+  setPrivacyType: (value) => {
     set((state) => ({
         housing:{...state.housing,privacyType:value}
     }));
   },
-  setLocation:(lat:number,long:number) => {
+  setLocation:(lat,long) => {
     set((state)=>({
       housing:{
         ...state.housing,
@@ -55,14 +59,33 @@ export const useHousingStore = create<HousingStoreState>((set) => ({
     }))
   },
 
-  setFloorPlan:(value:FloorPlan)=>{
+  setFloorPlan:(value)=>{
     set((state)=>({
       housing:{
         ...state.housing,
+        
         floorPlan:{
           ...value
         }
       }
     }))
-  }  
+  },
+  addAmenities(value) {
+    set((state)=>({
+      housing:{
+        ...state.housing,
+        amenities:[...state.housing.amenities,value]
+      }
+    }))
+  },
+  deleteAmenity(value) {
+    set((state)=>({
+      housing:{
+        ...state.housing,
+        amenities:state.housing.amenities.filter((x)=>x !== value)
+      }
+    }))
+  }
+
+
 }));
