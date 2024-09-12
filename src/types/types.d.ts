@@ -1,4 +1,5 @@
 interface HouseProps {
+    id:string;
     images:string[];
     country:string;
     city:string;

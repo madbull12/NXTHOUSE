@@ -16,6 +16,7 @@ import { ModeToggle } from "./ModeToggle";
 
 const Header = () => {
   const { data:session } = useSession();
+  console.log(session)
   const pathname = usePathname();
   if (pathname !== "/") return null;
 

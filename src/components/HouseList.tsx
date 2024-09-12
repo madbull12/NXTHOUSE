@@ -6,7 +6,7 @@ const HouseList = () => {
   return (
     <div className="mt-4 grid grid-cols-4 gap-6">
       {houses.map((house) => (
-        <HouseCard  house={house}/>
+        <HouseCard key={house.id}  house={house}/>
       ))}
     </div>
   );

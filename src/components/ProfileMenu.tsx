@@ -14,7 +14,7 @@ import { Skeleton } from "./ui/skeleton";
 
 const ProfileMenu = () => {
   const { data: session, status } = useSession();
-  console.log(session?.user.image);
+  console.log(session?.user.image)
   return (
     <DropdownMenu >
       <DropdownMenuTrigger asChild >
@@ -23,16 +23,12 @@ const ProfileMenu = () => {
           <Avatar>
             <AvatarImage
               className="rounded-full"
-              height={40}
-              width={40}
-              src={
-                status === "unauthenticated"
-                  ? "https://github.com/shadcn.png"
-                  : session?.user.image!
-              }
+              height={30}
+              width={30}
+              src={session?.user.image!}
             />
             <AvatarFallback>
-              <Skeleton className="w-[40px] h-[40px] rounded-full" />
+              <Skeleton className="w-[30px] h-[30px] rounded-full" />
             </AvatarFallback>
           </Avatar>
         </div>

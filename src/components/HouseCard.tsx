@@ -15,6 +15,7 @@ import SwiperCore, {
 import { AiFillStar, AiOutlineHeart } from "react-icons/ai";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { useHover } from "usehooks-ts";
+import { HouseProps } from "@/types/types";
 
 SwiperCore.use([Pagination]);
 const HouseCard = ({ house }: { house: HouseProps }) => {
