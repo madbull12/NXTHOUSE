@@ -1,7 +1,7 @@
 import Container from "@/components/Container";
 import HostFooter from "@/components/HostFooter";
 import Logo from "@/components/Logo";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 
 import React from "react";
 

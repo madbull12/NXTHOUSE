@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import Providers from "@/components/Providers";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import NextTopLoader from "nextjs-toploader";
 

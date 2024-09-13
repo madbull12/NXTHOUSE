@@ -1,6 +1,6 @@
 import Google from "next-auth/providers/google"
 import type { NextAuthConfig } from "next-auth"
-import { db } from "./db";
+import { db } from "./lib/db";
 import { compare } from "bcryptjs";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
@@ -51,36 +51,19 @@ export default {
         },
     })],
     callbacks: {
-        async session({ token, session }) {
-          if (token) {
-            session.user.id = token.id;
-            session.user.name = token.name;
-            session.user.email = token?.email as string;
-            session.user.image = token.picture;
-          }
+      jwt({ token, account, user }) {
+        if (account) {
+          token.accessToken = account.access_token
+          token.id = user?.id as string
+        }
+        return token
+      },
+      session({ session, token }) {
+          // I skipped the line below coz it gave me a TypeError
+          // session.accessToken = token.accessToken;
+          session.user.id = token.id;
     
           return session;
-        },
-        async jwt({ token, user }) {
-          const dbUser = await db.user.findFirst({
-            where: {
-              email: token.email,
-            },
-          });
-    
-          if (!dbUser) {
-            if (user) {
-              token.id = user?.id as string;
-            }
-            return token;
-          }
-    
-          return {
-            id: dbUser.id,
-            name: dbUser.name,
-            email: dbUser.email,
-            picture: dbUser.image,
-          };
         },
       },
     
