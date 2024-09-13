@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
 import { auth } from "@/lib/auth";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import NextTopLoader from "nextjs-toploader";
 
 const poppins = Poppins({
   weight: ["500", "400", "100", "700"],
@@ -36,7 +37,7 @@ export default async function RootLayout({ children }: RootProps) {
           disableTransitionOnChange
         >
           <SessionProvider session={session}>
-            {/* <NextTopLoader color="#FC834A" showSpinner={false} /> */}
+            <NextTopLoader color="#FC834A" showSpinner={false} />
             <Toaster position="top-center" reverseOrder={false} />
 
             <Header />

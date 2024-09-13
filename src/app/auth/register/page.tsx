@@ -1,4 +1,4 @@
-"use client"
+
 
 
 import RegisterForm from '@/components/RegisterForm'
