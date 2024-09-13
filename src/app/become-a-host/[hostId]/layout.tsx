@@ -1,15 +1,14 @@
 import Container from "@/components/Container";
 import HostFooter from "@/components/HostFooter";
 import Logo from "@/components/Logo";
-import { getCurrentUser } from "@/lib/session";
-import { User } from "@prisma/client";
-import { Metadata } from "next";
+import { auth } from "@/lib/auth";
+
 import React from "react";
 
 
 
 const Layout = async({ children }: { children: React.ReactNode, }) => {
-  const session = await getCurrentUser();
+  const session = await auth();
 
 
   return (

@@ -1,14 +1,10 @@
-"use client"
 
 import Container from "@/components/Container";
 import HostFooter from "@/components/HostFooter";
 import OverviewStep from "@/components/OverviewStep";
 import { Metadata } from "next";
 import React from "react";
-export const metadata: Metadata = {
-  title: "Create your listing - NXTHOUSE",
-  description: "the page to host your house",
-};
+
 
 const OverviewPage = () => {
   const overviews = [

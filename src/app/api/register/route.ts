@@ -1,10 +1,11 @@
-import { db } from "@/lib/db";
-import {  registerSchemaValidator } from "@/lib/validations/auth";
+
+import {db } from "@/lib/db";
+import { registerSchemaValidator } from "@/lib/validations/auth";
 import { hash } from "bcrypt";
 
 export async function POST(req: Request) {
-  const body  = await req.json();
-  const { name,email,password,confirmPassword } = registerSchemaValidator.parse(body);
+  const body = await req.json();
+  const { name, email, password, confirmPassword } = registerSchemaValidator.parse(body);
   // const { email, password, confirmPassword, name }: RegisterRequest =
   //   await req.json();
   const hashed = await hash(password, 12);
@@ -25,7 +26,7 @@ export async function POST(req: Request) {
         email,
         password: hashed,
         name,
-        
+
       },
     });
   } catch (err) {
