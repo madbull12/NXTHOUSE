@@ -1,5 +1,7 @@
+import { paraglide } from '@inlang/paraglide-next/plugin'
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+export const nextConfig = {
     // experimental:{
     //     serverComponentsExternalPackages:["bcrypt"]
     // },
@@ -21,4 +23,12 @@ const nextConfig = {
     }
 }
 
-module.exports = nextConfig
+export default paraglide({
+  paraglide: {
+    project: './project.inlang',
+    outdir: './src/paraglide'
+  },
+  ...nextConfig
+})
+
+

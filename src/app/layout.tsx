@@ -9,7 +9,8 @@ import Header from "@/components/Header";
 import { auth } from "@/auth";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import NextTopLoader from "nextjs-toploader";
-
+import { LanguageProvider } from "@inlang/paraglide-next";
+import { languageTag } from '@/paraglide/runtime'
 const poppins = Poppins({
   weight: ["500", "400", "100", "700"],
   subsets: ["latin"],
@@ -27,24 +28,26 @@ interface RootProps {
 export default async function RootLayout({ children }: RootProps) {
   const session = await auth();
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body className={poppins.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <SessionProvider session={session}>
-            <NextTopLoader color="#FC834A" showSpinner={false} />
-            <Toaster position="top-center" reverseOrder={false} />
+    <LanguageProvider>
+      <html lang={languageTag()} suppressHydrationWarning>
+        <head />
+        <body className={poppins.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <SessionProvider session={session}>
+              <NextTopLoader color="#FC834A" showSpinner={false} />
+              <Toaster position="top-center" reverseOrder={false} />
 
-            <Header />
-            {children}
-          </SessionProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+              <Header />
+              {children}
+            </SessionProvider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </LanguageProvider>
   );
 }

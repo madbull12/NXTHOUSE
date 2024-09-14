@@ -81,9 +81,9 @@ const HouseCard = ({ house }: { house: HouseProps }) => {
           </h2>
           <p>
             <span className="font-[500]">
-              Rp {house.price.toLocaleString()}
-            </span>{" "}
-            night
+              Rp {house.price}  
+            </span>
+            / night
           </p>
         </div>
         <div className="flex items-center gap-x-1">

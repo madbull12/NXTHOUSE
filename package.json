@@ -12,6 +12,7 @@
     "@auth/prisma-adapter": "^2.4.2",
     "@danmarshall/deckgl-typings": "^4.9.28",
     "@hookform/resolvers": "^3.1.0",
+    "@inlang/paraglide-next": "^0.5.2",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@prisma/client": "^4.14.1",
     "@radix-ui/react-avatar": "^1.0.2",
@@ -69,6 +70,7 @@
     "@types/leaflet": "^1.9.12",
     "@types/mapbox__mapbox-gl-geocoder": "^4.7.4",
     "@types/uuid": "^9.0.1",
-    "prisma": "^5.19.1"
+    "prisma": "^5.19.1",
+    "@inlang/paraglide-js": "1.11.2"
   }
 }
