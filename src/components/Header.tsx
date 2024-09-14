@@ -16,10 +16,10 @@ import { ModeToggle } from "./ModeToggle";
 
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
+  const languages = ['de','id']
   const pathname = usePathname();
   if (pathname !== "/") {
-    if (pathname.includes("de-ch")) {
+    if (languages.some((item)=>pathname.includes(item))) {
       return (
         <div className="flex flex-col sticky top-0  z-[100] right-0">
           <header className="bg-background p-4 border-b">

@@ -1,5 +1,5 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
     "hello": "Halo!",
-    "showTotalBeforeTaxes":"Summe vor Steuern anzeigen"
+    "showTotalBeforeTaxes":"Tampilkan total sebelum pajak"
 }

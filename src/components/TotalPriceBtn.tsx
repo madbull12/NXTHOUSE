@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Separator } from './ui/separator'
 import { Switch } from './ui/switch'
 import { AiOutlineCheck } from 'react-icons/ai'
-
+import * as m from '@/paraglide/messages'
 const SwitchTotalPriceBtn = () => {
 
     const [isChecked,setIsChecked] = useState<boolean>(false) 
@@ -25,9 +25,7 @@ const SwitchTotalPriceBtn = () => {
 const TotalPriceBtn = () => {
   return (
     <div className='mt-4 border rounded-lg gap-x-2  max-w-2xl flex items-center  mx-auto px-4 py-6 bg-transparent'>
-        <p className='font-semibold text-sm'>Tampilkan harga total</p>
-        <Separator className='bg-black' orientation='vertical'  />
-        <p className='text-gray-500 text-sm'>Termasuk semua biaya,sebelum pajak</p>
+        <p className='font-semibold text-sm'>{m.showTotalBeforeTaxes()}</p>
         <SwitchTotalPriceBtn />
     </div>
   )
