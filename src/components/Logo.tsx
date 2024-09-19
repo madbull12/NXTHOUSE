@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/lib/i18n";
 import React from "react";
 
 const Logo = () => {

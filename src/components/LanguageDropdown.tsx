@@ -4,7 +4,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 "use client";
-import { Link,useRouter } from "@/lib/i18n";
+import { Link,usePathname,useRouter } from "@/lib/i18n";
 import { setLanguageTag, languageTag } from "@/paraglide/runtime";
 import { useState } from "react";
 import {
@@ -15,12 +15,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function Component() {
+export default function LanguageDropdown() {
   // const [selectedLanguage, setSelectedLanguage] = useState("English");
-
+  const pathname = usePathname()
   const router = useRouter();
   const handleChangeLanguage = (value: "en" | "de" | "id" ) => {
-    router.push("/",{ locale:value })
+    router.replace(pathname,{ locale:value })
   }
   console.log(languageTag());
   return (
