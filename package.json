@@ -37,7 +37,7 @@
     "deck.gl": "^8.9.23",
     "eslint": "8.41.0",
     "eslint-config-next": "^14.2.11",
-    "framer-motion": "^10.12.16",
+    "framer-motion": "^10.18.0",
     "gl-matrix": "^3.4.3",
     "leaflet-geosearch": "^3.8.0",
     "lucide-react": "^0.220.0",
@@ -61,7 +61,7 @@
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.0.4",
-    "usehooks-ts": "^2.9.1",
+    "usehooks-ts": "^2.16.0",
     "uuid": "^9.0.0",
     "zod": "^3.21.4",
     "zustand": "^4.3.8"
