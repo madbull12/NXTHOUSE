@@ -153,13 +153,13 @@ const RegisterForm = () => {
           />
           <Button
             isLoading={isLoading}
-            className="w-full bg-accent hover:bg-accent hover:brightness-110 transition-all ease-out"
+            className="w-full bg-primary "
           >
             Sign up
           </Button>
           <p className="text-sm">
             Already have an account?{" "}
-            <Link href="/auth/login" className="text-accent-foreground">
+            <Link href="/auth/login" className="text-accent-foreground underline">
               Sign in here.
             </Link>
           </p>

@@ -111,13 +111,13 @@ const LoginForm = () => {
           />
           <Button
             isLoading={isLoading}
-            className="w-full bg-accent hover:bg-accent hover:brightness-110 transition-all ease-out"
+            className="w-full  bg-primary  transition-all ease-out"
           >
             Login
           </Button>
           <div className="text-sm">
             Don't have an account yet?{" "}
-            <Link href="/auth/register" className="text-accent-foreground">
+            <Link href="/auth/register" className="text-accent-foreground underline">
               Register here.
             </Link>
           </div>

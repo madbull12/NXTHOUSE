@@ -28,7 +28,7 @@ const BookingButton = ({ handleClick, headerExpanded }: Props) => {
         <Separator orientation="vertical" />
 
         <span className="text-gray-400">Add guests</span>
-        <div className="w-6 h-6 bg-accent rounded-full place-items-center grid">
+        <div className="w-6 h-6 bg-primary rounded-full place-items-center grid">
           <Search size={15} color="white" />
         </div>
       </motion.div>

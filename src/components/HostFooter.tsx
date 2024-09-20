@@ -2,11 +2,9 @@
 
 import React from "react";
 import { Button } from "./ui/button";
-import Link from "next/link";
 
-import { User } from "@prisma/client";
-import { usePathname } from "next/navigation";
 import Container from "./Container";
+import { Link, usePathname } from "@/lib/i18n";
 
 interface Props {
   disableNext:boolean;
@@ -57,7 +55,7 @@ const HostFooter: React.FC<Props> = ({ disableNext }) => {
         ) : <div className="h-2 w-full bg-gray-200"></div>}
 
         {isOverviewPage ? (
-          <Button className="bg-accent hover:bg-accent w-full md:w-auto self-end">
+          <Button className=" w-full md:w-auto self-end">
             <Link href={nextLink} className="w-full">
               Get Started
             </Link>
@@ -68,7 +66,7 @@ const HostFooter: React.FC<Props> = ({ disableNext }) => {
               Back
             </Link>
 
-            <Button disabled={disableNext} className="bg-foreground px-8">
+            <Button disabled={disableNext} className=" px-8">
               <Link href={nextLink} className="w-full">
                 Next
               </Link>
