@@ -23,6 +23,7 @@ const Header = () => {
   const pathname = usePathname();
   const [headerExpanded, setHeaderExpanded] = useState(false);
   const isOnHomePage = pathname === "/";
+  
   const handleClickHeader = () => {
     if (!headerExpanded) {
       setHeaderExpanded(true);
@@ -37,6 +38,9 @@ const Header = () => {
 
   useOnClickOutside(headerRef, closeExpandedHeader);
 
+  if(pathname.includes("/auth")) {
+    return null
+  }
   return (
     <div className="flex flex-col sticky top-0  z-[100] right-0">
       <motion.header
