@@ -38,7 +38,7 @@ const OverviewPage = () => {
         </h1>
         <div className="flex flex-col  w-full md:w-1/2">
         {overviews.map((overview)=>(
-            <OverviewStep  overview={overview as typeof overview} />
+            <OverviewStep key={overview.title}  overview={overview as typeof overview} />
         ))}
         </div>
  
